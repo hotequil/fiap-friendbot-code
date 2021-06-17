@@ -1,2 +1,2 @@
-# fiap-friendbot-code
-Código do FriendBot para os exercícios 
+# FIAP FriendBot Code
+Código do FriendBot para os exercícios.
