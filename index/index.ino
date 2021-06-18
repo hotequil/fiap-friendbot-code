@@ -5,7 +5,7 @@ char dataSerial;
 #define RIGHT 'r'
 #define LEFT 'l'
 
-#define SPEED_ENGINE 128
+#define SPEED_ENGINE 255
 #define STOP_ENGINE 0
 
 #define ENGINE_LEFT_FORWARD 3
@@ -32,16 +32,16 @@ void loop(){
 
     switch(dataSerial){
       case FORWARD:        
-        run(SPEED_ENGINE, STOP_ENGINE, SPEED_ENGINE, STOP_ENGINE);
+        run(STOP_ENGINE, SPEED_ENGINE, STOP_ENGINE, SPEED_ENGINE);
         break;        
       case BACK:
-        run(STOP_ENGINE, SPEED_ENGINE, STOP_ENGINE, SPEED_ENGINE);
+        run(SPEED_ENGINE, STOP_ENGINE, SPEED_ENGINE, STOP_ENGINE);
         break;
       case RIGHT:  
-        run(SPEED_ENGINE, STOP_ENGINE, STOP_ENGINE, SPEED_ENGINE);
+        run(STOP_ENGINE, SPEED_ENGINE, SPEED_ENGINE, STOP_ENGINE);
         break;
       case LEFT:
-        run(STOP_ENGINE, SPEED_ENGINE, SPEED_ENGINE, STOP_ENGINE);
+        run(SPEED_ENGINE, STOP_ENGINE, STOP_ENGINE, SPEED_ENGINE);
         break;
       default:
         run(STOP_ENGINE, STOP_ENGINE, STOP_ENGINE, STOP_ENGINE);
