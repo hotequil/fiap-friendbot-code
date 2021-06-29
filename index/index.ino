@@ -1,23 +1,11 @@
-char dataSerial;
-
-#define FORWARD 'u'
-#define BACK 'd'
-#define RIGHT 'r'
-#define LEFT 'l'
-
-#define SPEED_ENGINE 255
+#define SPEED_ENGINE 128
 #define STOP_ENGINE 0
 
-#define ENGINE_LEFT_FORWARD 3
-#define ENGINE_LEFT_BACK 5
-#define ENGINE_RIGHT_FORWARD 6
-#define ENGINE_RIGHT_BACK 9
-
 void run(int leftForwardValue, int leftBackValue, int rightForwardValue, int rightBackValue){
-  analogWrite(ENGINE_LEFT_FORWARD, leftForwardValue);
-  analogWrite(ENGINE_LEFT_BACK, leftBackValue);
-  analogWrite(ENGINE_RIGHT_FORWARD, rightForwardValue);
-  analogWrite(ENGINE_RIGHT_BACK, rightBackValue);
+  analogWrite(3, leftForwardValue);
+  analogWrite(6, rightForwardValue);
+  analogWrite(5, leftBackValue);
+  analogWrite(9, rightBackValue);
 }
 
 void setup(){
@@ -25,22 +13,18 @@ void setup(){
 }
 
 void loop(){ 
-  if(Serial.available()){
-    dataSerial = Serial.read();
-
-    Serial.println(dataSerial);
-
-    switch(dataSerial){
-      case FORWARD:        
+  if(Serial.available()){    
+    switch(Serial.read()){
+      case 'u':        
         run(STOP_ENGINE, SPEED_ENGINE, STOP_ENGINE, SPEED_ENGINE);
         break;        
-      case BACK:
+      case 'd':
         run(SPEED_ENGINE, STOP_ENGINE, SPEED_ENGINE, STOP_ENGINE);
         break;
-      case RIGHT:  
+      case 'r':  
         run(STOP_ENGINE, SPEED_ENGINE, SPEED_ENGINE, STOP_ENGINE);
         break;
-      case LEFT:
+      case 'l':
         run(SPEED_ENGINE, STOP_ENGINE, STOP_ENGINE, SPEED_ENGINE);
         break;
       default:
